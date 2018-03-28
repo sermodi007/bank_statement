@@ -1,0 +1,18 @@
+<div>
+  <ul class="collection">
+      <div>
+        <%= for key <- @csvkey do  %>
+        <%= key %> 
+      <% end %>
+      </div>
+    <li class = "collection-item"> 
+            
+        <%= for {:ok, value} <- @decoded_csv do %>
+          <div>
+            <%=  value["Saldo"] %>
+            </div>
+          <% end %>
+     </li>
+  </ul>
+
+</div>

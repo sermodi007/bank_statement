@@ -1,0 +1,11 @@
+<div>
+  <%= form_for @conn, page_path(@conn, :parse), [multipart: true], fn f -> %>
+      <div class="form-group">
+        <label>File to Parse</label>
+        <%= file_input f, :file, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= submit "Submit", class: "btn btn-primary" %>
+       </div>
+    <% end %>
+</div>
