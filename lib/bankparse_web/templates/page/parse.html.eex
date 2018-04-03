@@ -1,18 +1,28 @@
-<div>
-  <ul class="collection">
-      <div>
+<table style="width:100%">
+  <thead>
+    <tr>
         <%= for key <- @csvkey do  %>
-        <%= key %> 
+          <th>
+            <%= key %> 
+          </th>
       <% end %>
-      </div>
-    <li class = "collection-item"> 
-            
-        <%= for {:ok, value} <- @decoded_csv do %>
-          <div>
-            <%=  value["Saldo"] %>
-            </div>
+      </tr>
+  </thead>
+        <%= for value <- @decoded_csv do %>
+  <tbody>
+      <tr> 
+          <%= for headkey <- @csvkey do %>
+            <th>
+            <%= value[headkey]  %>
+            </th>
           <% end %>
-     </li>
-  </ul>
+      </tr>
+  </tbody>
+  
+  <% end %>
 
-</div>
+
+</table>
+  <div  class="right">
+                <%= link "Preparse", to: page_path(@conn, :preparse, keys: @csvkey, decodedcsv: [ ok: %{"belopp" => "10kr"}, ok: %{"belopp" => "20kr"}]), class: " btn-large " %>
+  </div>

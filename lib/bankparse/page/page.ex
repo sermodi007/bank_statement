@@ -2,12 +2,11 @@ defmodule Bankparse.Page.List do
   use Ecto.Schema
   import Ecto.Changeset
 
-
   schema "lists" do
-    field :amount, :float
-    field :date, :date
-    field :place, :string
-    field :type, :string
+    field(:amount, :float)
+    field(:date, :date)
+    field(:place, :string)
+    field(:type, :string)
 
     timestamps()
   end

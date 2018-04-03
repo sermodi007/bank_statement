@@ -7,7 +7,12 @@ defmodule Bankparse.StatementTest do
     alias Bankparse.Statement.List
 
     @valid_attrs %{amount: 120.5, date: ~D[2010-04-17], place: "some place", type: "some type"}
-    @update_attrs %{amount: 456.7, date: ~D[2011-05-18], place: "some updated place", type: "some updated type"}
+    @update_attrs %{
+      amount: 456.7,
+      date: ~D[2011-05-18],
+      place: "some updated place",
+      type: "some updated type"
+    }
     @invalid_attrs %{amount: nil, date: nil, place: nil, type: nil}
 
     def list_fixture(attrs \\ %{}) do

@@ -20,6 +20,7 @@ defmodule BankparseWeb.ListController do
         conn
         |> put_flash(:info, "List created successfully.")
         |> redirect(to: list_path(conn, :show, list))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -44,6 +45,7 @@ defmodule BankparseWeb.ListController do
         conn
         |> put_flash(:info, "List updated successfully.")
         |> redirect(to: list_path(conn, :show, list))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", list: list, changeset: changeset)
     end
