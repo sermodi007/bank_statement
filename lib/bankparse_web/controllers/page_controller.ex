@@ -1,5 +1,6 @@
 defmodule BankparseWeb.PageController do
   use BankparseWeb, :controller
+  require Logger
 
   def index(conn, _params) do
     render(conn, "index.html")
@@ -23,23 +24,29 @@ defmodule BankparseWeb.PageController do
 
     IO.puts("++++++++++++++++")
 
-    [csv_keys] =
+    [csv_keys|_tail] =
       decoded_csv
       |> Enum.take(1)
-      |> IO.inspect()
 
+    IO.inspect(csv_keys)
     IO.puts("++++++++++++++++")
 
-    test = Map.keys([csv_keys])
-    IO.inspect(test)
+    csvkey = Map.keys(csv_keys)
+    IO.inspect(csvkey)
 
+
+    #render(conn, "parse.html", csvkey: csvkey)
+    assign(conn, :decoded_csv, decoded_csv)
     IO.puts("++++++++++++++++")
-    # render(conn, "parse.html", decoded_csv: decoded_csv, csvkey: Map.keys(csv_keys))
-    render(conn, "parse.html", decoded_csv: decoded_csv)
+    IO.inspect(conn)
+    render(conn, "parse.html", decoded_csv: decoded_csv, csvkey: csvkey)
+
   end
 
-  def preparse(conn, %{"keys" => csvkey, "decodedcsv" => decoded_csv}) do
-    IO.inspect(decoded_csv)
+  def preparse(conn, %{"keys" => keys}) do
+       Logger.debug "Assigns value: #{inspect(keys)}"
+      IO.puts("******+++++++++++")
+    #IO.inspect(conn)
     render(conn, "preparse.html")
   end
 end

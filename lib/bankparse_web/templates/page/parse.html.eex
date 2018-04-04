@@ -8,21 +8,24 @@
       <% end %>
       </tr>
   </thead>
-        <%= for value <- @decoded_csv do %>
+  <%= for value <- @decoded_csv do %>
   <tbody>
       <tr> 
           <%= for headkey <- @csvkey do %>
             <th>
             <%= value[headkey]  %>
+            <%= %>
             </th>
           <% end %>
       </tr>
   </tbody>
   
   <% end %>
-
+<%= #@conn.assign(:csvdata, @decoded_csv)%>
 
 </table>
   <div  class="right">
-                <%= link "Preparse", to: page_path(@conn, :preparse, keys: @csvkey, decodedcsv: [ ok: %{"belopp" => "10kr"}, ok: %{"belopp" => "20kr"}]), class: " btn-large " %>
+                <%= link "Preparse", to: page_path(@conn, :preparse, keys: @csvkey) %>
+                <%= #Logger.debug "Var value: #{inspect(@conn.assigns.csvkey)}"%>
+                <%= #link "Preparse", to: page_path(@conn, :preparse, keys: @csvkey, decodedcsv: @decoded_csv) %>
   </div>
