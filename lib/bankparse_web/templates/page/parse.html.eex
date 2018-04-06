@@ -21,11 +21,11 @@
   </tbody>
   
   <% end %>
-<%= #@conn.assign(:csvdata, @decoded_csv)%>
 
 </table>
   <div  class="right">
-                <%= link "Preparse", to: page_path(@conn, :preparse, keys: @csvkey) %>
+                <%= Logger.debug "assign Var value: #{inspect(@conn.assigns)}"%>
+                <%= link "Preparse", to: page_path(@conn, :preparse)%>
                 <%= #Logger.debug "Var value: #{inspect(@conn.assigns.csvkey)}"%>
                 <%= #link "Preparse", to: page_path(@conn, :preparse, keys: @csvkey, decodedcsv: @decoded_csv) %>
   </div>

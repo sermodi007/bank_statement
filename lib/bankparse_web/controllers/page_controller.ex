@@ -36,16 +36,19 @@ defmodule BankparseWeb.PageController do
 
 
     #render(conn, "parse.html", csvkey: csvkey)
-    assign(conn, :decoded_csv, decoded_csv)
-    IO.puts("++++++++++++++++")
-    IO.inspect(conn)
-    render(conn, "parse.html", decoded_csv: decoded_csv, csvkey: csvkey)
+    #IO.puts("++++++++++++++++")
+    #IO.inspect(conn)
+
+    conn
+    |> assign(:decoded_csv, decoded_csv)
+    |> render("parse.html", csvkey: csvkey)
 
   end
 
-  def preparse(conn, %{"keys" => keys}) do
-       Logger.debug "Assigns value: #{inspect(keys)}"
-      IO.puts("******+++++++++++")
+  def preparse(conn, params) do
+    IO.puts("******+++++++++++")
+    Logger.debug "Assigns value: #{inspect(params)}"
+    IO.puts("******+++++++++++")
     #IO.inspect(conn)
     render(conn, "preparse.html")
   end
